@@ -20,7 +20,7 @@ Ce guide décrit toutes les étapes nécessaires pour créer et exécuter un pro
 mkdir mon-projet-angularjs
 cd mon-projet-angularjs
 ```
-### 2. Créer un dossier de projet
+### 2. Initialiser un projet Node.js
 ```bash
 npm init -y
 ```
