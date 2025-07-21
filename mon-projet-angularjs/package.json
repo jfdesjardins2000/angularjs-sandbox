@@ -4,16 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server .",
+    "start": "live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.8.3"
+    "angular": "1.8.3"
   },
   "devDependencies": {
-    "http-server": "^0.12.3"
+    "live-server": "1.2.1"
   }
 }
