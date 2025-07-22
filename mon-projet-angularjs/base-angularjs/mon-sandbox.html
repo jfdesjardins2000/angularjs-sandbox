@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="monSanbox">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Sandbox</title>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        input.ng-invalid.ng-touched {
+            border: 1px solid red;
+        }
+        input.ng-valid.ng-touched {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+
+    <div ng-controller="mainController">
+        <h2>Formulaire d'inscription de {{nomApplication}}</h2>
+        <!-- <form name="myForm">
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text"
+                   id="username"
+                   name="username"
+                   ng-model="user.username"
+                   ng-minlength="5"
+                   ng-maxlength="15"
+                   required>
+
+            <div ng-messages="myForm.username.$error" role="alert" class="error-message">
+                <div ng-message="required">Le nom d'utilisateur est requis.</div>
+                <div ng-message="minlength">Le nom d'utilisateur doit contenir au moins 5 caractères.</div>
+                <div ng-message="maxlength">Le nom d'utilisateur ne doit pas dépasser 15 caractères.</div>
+            </div>
+
+            <br><br>
+
+            <label for="email">Email:</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   ng-model="user.email"
+                   required>
+
+            <div ng-messages="myForm.email.$error" role="alert" class="error-message">
+                <div ng-message="required">L'adresse email est requise.</div>
+                <div ng-message="email">Veuillez entrer une adresse email valide.</div>
+            </div>
+
+            <br><br>
+
+            <button type="submit" ng-disabled="myForm.$invalid">Soumettre</button>
+        </form> -->
+    </div>
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../node_modules/angular-resource/angular-resource.min.js"></script>
+
+    <script src="mon-sandbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="twoWayBinding">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Two-Way Data Binding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+        input.ng-invalid.ng-touched {
+            border: 2px solid #e74c3c;
+        }
+        input.ng-valid.ng-touched {
+            border: 2px solid #27ae60;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #333;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover:not(:disabled) {
+            background: #2980b9;
+        }
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .data-display {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+        .real-time-demo {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .real-time-demo input {
+            flex: 1;
+        }
+        .real-time-output {
+            flex: 1;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .counter {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .list-item {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+            border-left: 3px solid #3498db;
+        }
+    </style>       
+</head>
+<body>    
+    <div class="container" ng-controller="twoWayBindingController">
+        <h1>🚀 AngularJS Two-Way Data Binding</h1>
+        
+        <!-- Démonstration en temps réel -->
+        <div class="demo-section">
+            <h2>✨ Two-Way Data Binding en Action</h2>
+            <div class="real-time-demo">
+                <input type="text" ng-model="realTimeText" placeholder="Tapez quelque chose...">
+                <div class="real-time-output">{{realTimeText || "Commencez à taper..."}}</div>
+            </div>
+            <p><strong>Nombre de caractères:</strong> <span class="counter">{{realTimeText.length || 0}}</span></p>
+        </div>
+
+        <!-- Formulaire d'inscription original amélioré -->
+        <div class="demo-section">
+            <h2>📝 Formulaire d'inscription de {{nomApplication}}</h2>
+            <form name="myForm">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text"
+                       id="username"
+                       name="username"
+                       ng-model="user.username"
+                       ng-minlength="5"
+                       ng-maxlength="25"
+                       placeholder="Au moins 5 caractères"
+                       required>
+
+                <div ng-messages="myForm.username.$error" role="alert" class="error-message">
+                    <div ng-message="required">Le nom d'utilisateur est requis.</div>
+                    <div ng-message="minlength">Le nom d'utilisateur doit contenir au moins 5 caractères.</div>
+                    <div ng-message="maxlength">Le nom d'utilisateur ne doit pas dépasser 15 caractères.</div>
+                </div>
+
+                <label for="email">Email:</label>
+                <input type="email"
+                       id="email"
+                       name="email"
+                       ng-model="user.email"
+                       placeholder="exemple@email.com"
+                       required>
+
+                <div ng-messages="myForm.email.$error" role="alert" class="error-message">
+                    <div ng-message="required">L'adresse email est requise.</div>
+                    <div ng-message="email">Veuillez entrer une adresse email valide.</div>
+                </div>
+
+                <label for="age">Âge:</label>
+                <input type="number"
+                       id="age"
+                       name="age"
+                       ng-model="user.age"
+                       min="18"
+                       max="100"
+                       placeholder="18-100 ans">
+
+                <label for="city">Ville:</label>
+                <select id="city" ng-model="user.city">
+                    <option value="">Sélectionnez une ville</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Québec">Québec</option>
+                    <option value="Lyon">Lyon</option>
+                    <option value="Marseille">Marseille</option>
+                    <option value="Toulouse">Toulouse</option>
+                    <option value="Nice">Nice</option>
+                </select>
+
+                <label for="bio">Biographie:</label>
+                <textarea id="bio"
+                          ng-model="user.bio"
+                          placeholder="Parlez-nous de vous..."
+                          rows="3"></textarea>
+
+                <label>
+                    <input type="checkbox" ng-model="user.newsletter"> 
+                    Je souhaite recevoir la newsletter
+                </label>
+
+                <br><br>
+                <button type="submit" ng-disabled="myForm.$invalid">Soumettre</button>
+                <button type="button" ng-click="resetForm()">Réinitialiser</button>
+                <button type="button" ng-click="fillSampleData()">Données d'exemple</button>
+            </form>
+        </div>
+
+        <!-- Affichage des données en temps réel -->
+        <div class="demo-section">
+            <h2>📊 Données du formulaire (Two-Way Binding)</h2>
+            <div class="data-display">
+                <h3>Objet user en temps réel:</h3>
+                <pre>{{user | json}}</pre>
+            </div>
+            
+            <div ng-if="user.username || user.email">
+                <h3>Aperçu du profil:</h3>
+                <div class="list-item" ng-if="user.username">
+                    <strong>👤 Utilisateur:</strong> {{user.username}}
+                </div>
+                <div class="list-item" ng-if="user.email">
+                    <strong>📧 Email:</strong> {{user.email}}
+                </div>
+                <div class="list-item" ng-if="user.age">
+                    <strong>🎂 Âge:</strong> {{user.age}} ans
+                </div>
+                <div class="list-item" ng-if="user.city">
+                    <strong>🏙️ Ville:</strong> {{user.city}}
+                </div>
+                <div class="list-item" ng-if="user.bio">
+                    <strong>📝 Bio:</strong> {{user.bio}}
+                </div>
+                <div class="list-item">
+                    <strong>📬 Newsletter:</strong> 
+                    <span ng-if="user.newsletter">✅ Abonné</span>
+                    <span ng-if="!user.newsletter">❌ Non abonné</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Démonstration avancée -->
+        <div class="demo-section">
+            <h2>🎛️ Contrôles Dynamiques</h2>
+            
+            <label>Compteur:</label>
+            <button ng-click="counter = counter - 1">-</button>
+            <span class="counter">{{counter}}</span>
+            <button ng-click="counter = counter + 1">+</button>
+            
+            <br><br>
+            
+            <label>Couleur de fond:</label>
+            <input type="color" ng-model="backgroundColor">
+            <div ng-style="{'background-color': backgroundColor, 'padding': '10px', 'margin-top': '10px', 'border-radius': '5px', 'color': 'white', 'text-align': 'center'}">
+                Couleur actuelle: {{backgroundColor}}
+            </div>
+
+            <br>
+            
+            <label>Curseur:</label>
+            <input type="range" ng-model="sliderValue" min="0" max="100">
+            <div ng-style="{'width': sliderValue + '%', 'background': '#3498db', 'height': '20px', 'border-radius': '10px', 'margin-top': '10px', 'position': 'relative'}">
+                <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;">
+                    {{sliderValue}}%
+                </span>
+            </div>
+        </div>
+
+        <!-- Liste dynamique -->
+        <div class="demo-section">
+            <h2>📋 Liste Dynamique</h2>
+            
+            <label>Nouvel élément:</label>
+            <input type="text" ng-model="newItem" placeholder="Tapez un élément...">
+            <button ng-click="addItem()" ng-disabled="!newItem">Ajouter</button>
+            
+            <div ng-if="items.length > 0">
+                <h3>Liste des éléments ({{items.length}}):</h3>
+                <div ng-repeat="item in items track by $index" class="list-item">
+                    {{$index + 1}}. {{item}}
+                    <button ng-click="removeItem($index)" style="float: right; background: #e74c3c;">Supprimer</button>
+                </div>
+                <button ng-click="clearItems()" style="background: #e67e22;">Vider la liste</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../node_modules/angular-resource/angular-resource.min.js"></script>
+
+    <script src="angularjs-databinding.js"></script>
+</body>
+</html>

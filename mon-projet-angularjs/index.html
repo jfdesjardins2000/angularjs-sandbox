@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="monApp">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mon Projet AngularJS</title>
-  <script src="node_modules/angular/angular.min.js"></script>
-  <script src="app.js"></script>
+    <meta charset="UTF-8">
+    <title>Mon Projet AngularJS</title>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        input.ng-invalid.ng-touched {
+            border: 1px solid red;
+        }
+        input.ng-valid.ng-touched {
+            border: 1px solid green;
+        }
+    </style>
 </head>
-<body ng-controller="MonControleur">
-  <h1>{{ message }}</h1>
+<body>
+
+    
+  <h2>Bienvenue dans mon projet AngularJS</h2>
+  
+  <p>Démo de base AngularJS.</p>
+  <a href="base-angularjs/mon-sandbox.html">Aller à la démo Base AngularJS</a>
+
+  <p>Démo de Data Binding.</p>
+  <a href="data-binding-directives/angularjs-databinding.html">Aller à la démo Data Binding</a>
+
 </body>
 </html>
