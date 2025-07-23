@@ -13,7 +13,8 @@
   "dependencies": {
     "angular": "1.8.3",
     "angular-messages": "^1.8.3",
-    "angular-resource": "^1.8.3"
+    "angular-resource": "^1.8.3",
+    "angular-route": "^1.8.3"
   },
   "devDependencies": {
     "live-server": "1.2.1"
