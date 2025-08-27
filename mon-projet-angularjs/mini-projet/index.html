@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="monSanbox">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini App AngularJS</title>
+
+  <!-- AngularJS -->
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../node_modules/angular-resource/angular-resource.min.js"></script>
+
+    <!-- Ton code -->
+    <script src="app/app.module.js"></script>
+    <script src="app/main.controller.js"></script>
+    <script src="app/user.service.js"></script>
+    <script src="app/user.controller.js"></script>
+</head>
+<body>
+
+  <h1>Mini Application AngularJS</h1>
+
+  <!-- Contrôleur principal -->
+  <div ng-controller="mainController">
+    <h2>Application</h2>
+    <p>Nom original : {{ name }}</p>
+    <p>Nom en majuscules : {{ nomApplication }}</p>
+  </div>
+
+  <hr>
+
+  <!-- Contrôleur utilisateur -->
+  <div ng-controller="userController">
+    <h2>Utilisateurs</h2>
+    <ul>
+      <li ng-repeat="user in users">
+        {{ user.id }} - {{ user.name }} ({{ user.role }})
+      </li>
+    </ul>
+
+    <input type="text" ng-model="newUserName" placeholder="Nouveau nom">
+    <button ng-click="addUser()">Ajouter</button>
+  </div>
+
+</body>
+</html>
