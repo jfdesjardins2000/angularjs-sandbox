@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>App AngularJS avec services</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+  <!-- Modules -->
+  <script src="app/app.module.js"></script>
+  <script src="app/users.module.js"></script>
+  <script src="app/products.module.js"></script>
+  <script src="app/autre-sandbox.module.js"></script>
+
+  <!-- Services -->
+  <script src="app/users.service.js"></script>
+  <script src="app/products.service.js"></script>
+  <script src="app/sandbox.service.js"></script>
+</head>
+<body>
+
+  <h1>Application principale</h1>
+
+  <!-- Users -->
+  <div ng-controller="UserListController">
+    <h2>Liste des utilisateurs</h2>
+    <ul>
+      <li ng-repeat="u in users">{{ u }}</li>
+    </ul>
+  </div>
+
+  <div ng-controller="UserFormController">
+    <h2>Ajouter un utilisateur</h2>
+    <input type="text" ng-model="newUserName" placeholder="Nom utilisateur">
+    <button ng-click="addUser()">Ajouter</button>
+  </div>
+
+  <hr>
+
+  <!-- Products -->
+  <div ng-controller="ProductListController">
+    <h2>Liste des produits</h2>
+    <ul>
+      <li ng-repeat="p in products">{{ p }}</li>
+    </ul>
+  </div>
+
+  <div ng-controller="ProductFormController">
+    <h2>Ajouter un produit</h2>
+    <input type="text" ng-model="newProduct" placeholder="Nom produit">
+    <button ng-click="addProduct()">Ajouter</button>
+  </div>
+
+  <hr>
+
+  <!-- Autre Sandbox -->
+  <div ng-controller="SandboxController">
+    <h2>Messages Sandbox</h2>
+    <ul>
+      <li ng-repeat="msg in messages">{{ msg }}</li>
+    </ul>
+  </div>
+
+  <div ng-controller="SandboxExtraController">
+    <h2>Ajouter un message</h2>
+    <input type="text" ng-model="newMessage" placeholder="Message">
+    <button ng-click="addMessage()">Ajouter</button>
+  </div>
+
+</body>
+</html>
