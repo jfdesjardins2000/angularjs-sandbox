@@ -22,7 +22,9 @@
         <!-- Formulaire d'inscription original amélioré -->
         <div class="demo-section">
             <h2>📝 Formulaire d'inscription de {{nomApplication}}</h2>
-            <form name="myForm">
+            <form name="myForm" ng-submit="submitForm(myForm)" novalidate>
+
+                <!-- Nom d'utilisateur: -->
                 <label for="username">Nom d'utilisateur:</label>
                 <input type="text"
                        id="username"
@@ -39,6 +41,7 @@
                     <div ng-message="maxlength">Le nom d'utilisateur ne doit pas dépasser 15 caractères.</div>
                 </div>
 
+                <!-- Email: -->
                 <label for="email">Email:</label>
                 <input type="email"
                        id="email"
@@ -52,15 +55,39 @@
                     <div ng-message="email">Veuillez entrer une adresse email valide.</div>
                 </div>
 
+                <!-- Code postal: -->
+                <label for="postal">Code postal:</label>
+                <input type="text"
+                    id="postal"
+                    name="postal"
+                    ng-model="user.codePostal"
+                    postal-code
+                    placeholder="Ex: G1G 1H3"
+                    required>
+
+                <div ng-messages="myForm.postal.$error" role="alert" class="error-message">
+                    <div ng-message="required">Le code postal est requis.</div>
+                    <div ng-message="postalCode">Format invalide (ex: G1G 1H3).</div>
+                </div>
+
+                <div class="info" ng-show="postalChecking">
+                    Vérification du code postal auprès du serveur...
+                </div>
+                <div class="error-message" ng-show="postalInvalidServer">
+                    Ce code postal n'est pas reconnu par le serveur.
+                </div>
+         
+                <!-- Âge: -->
                 <label for="age">Âge:</label>
                 <input type="number"
                        id="age"
                        name="age"
                        ng-model="user.age"
-                       min="18"
+                       min="7"
                        max="100"
-                       placeholder="18-100 ans">
+                       placeholder="7-100 ans">
 
+                <!-- Ville: -->
                 <label for="city">Ville:</label>
                 <select id="city" ng-model="user.city">
                     <option value="">Sélectionnez une ville</option>
@@ -72,6 +99,7 @@
                     <option value="Nice">Nice</option>
                 </select>
 
+                <!-- Biographie: -->
                 <label for="bio">Biographie:</label>
                 <textarea id="bio"
                           ng-model="user.bio"
@@ -98,29 +126,40 @@
                 <pre>{{user | json}}</pre>
             </div>
             
-            <div ng-if="user.username || user.email">
+            <div ng-if="user.username || user.email || user.codePostal">
                 <h3>Aperçu du profil:</h3>
+
                 <div class="list-item" ng-if="user.username">
                     <strong>👤 Utilisateur:</strong> {{user.username}}
                 </div>
+
                 <div class="list-item" ng-if="user.email">
                     <strong>📧 Email:</strong> {{user.email}}
                 </div>
+
+                <div class="list-item" ng-if="user.codePostal">
+                    <strong>🏤 Code postal:</strong> {{user.codePostal}}
+                </div>
+
                 <div class="list-item" ng-if="user.age">
                     <strong>🎂 Âge:</strong> {{user.age}} ans
                 </div>
+
                 <div class="list-item" ng-if="user.city">
                     <strong>🏙️ Ville:</strong> {{user.city}}
                 </div>
+
                 <div class="list-item" ng-if="user.bio">
                     <strong>📝 Bio:</strong> {{user.bio}}
                 </div>
+
                 <div class="list-item">
                     <strong>📬 Newsletter:</strong> 
                     <span ng-if="user.newsletter">✅ Abonné</span>
                     <span ng-if="!user.newsletter">❌ Non abonné</span>
                 </div>
             </div>
+
         </div>
 
         <!-- Démonstration avancée -->
