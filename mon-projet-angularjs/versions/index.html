@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="versionModule">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme d’aide financière Chauffez vert</title>
+    
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- AngularJS -->
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../node_modules/angular-resource/angular-resource.min.js"></script>
+
+    <!-- IMPORTANT: L'ordre de chargement est crucial -->
+    <script src="app/app.module.js"></script>
+    <script src="app/constante.service.js"></script>
+    <script src="app/version.service.js"></script>
+    <script src="app/version.controller.js"></script>
+</head>
+<body>
+    <!-- En-tête -->
+    <header class="header-main">
+        <div class="logo">
+            <span class="logo-icon">Québec</span>
+        </div>
+        <div class="app-title">Programme d’aide financière Chauffez vert</div>
+    </header>
+
+    <!-- Menu de navigation -->
+    <nav class="nav-menu">
+        <ul>
+            <li>Accueil</li>
+        </ul>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container" ng-controller="VersionController as vm">
+        <h1 class="page-title">{{vm.livraison()}} {{vm.branche}}</h1>
+
+        <!-- Liste des versions -->
+        <div class="version-card" ng-repeat="note in vm.notes">
+            <!-- En-tête de version -->
+            <div class="version-header" ng-class="{'prochaine': note.prochaineLivraison}">
+                <div class="version-title" ng-class="{'prochaine': note.prochaineLivraison}">
+                    <span ng-if="note.prochaineLivraison" class="prochaine-badge">Prochaine livraison</span>
+                    {{note.titre}}
+                </div>
+                <div class="version-meta">
+                    {{note.date}} / Branche: {{note.branche}}
+                </div>
+            </div>
+
+            <!-- Statistiques -->
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-label">Nombre de billet(s)</div>
+                    <div class="stat-value">{{vm.nombreBillet(note.lignes)}}</div>
+                </div>
+                
+                <div ng-if="note.prochaineLivraison" class="stat-box realise">
+                    <div class="stat-label">Billet(s) réalisé(s)</div>
+                    <div class="stat-value">{{vm.nombreBilletRealise(note.lignes)}}</div>
+                </div>
+                
+                <div ng-if="note.prochaineLivraison" class="stat-box afaire">
+                    <div class="stat-label">Billet(s) à faire</div>
+                    <div class="stat-value">{{vm.nombreBilletAfaire(note.lignes)}}</div>
+                </div>
+            </div>
+
+            <!-- Liste des billets -->
+            <div class="billets-section">
+                <div ng-repeat="ligne in note.lignes">
+                    <div ng-if="!ligne.retrait" class="section-title">
+                        {{ligne.texte}}
+                    </div>
+                    <div ng-if="ligne.retrait" 
+                         class="billet-item indent"
+                         ng-class="{'afaire': ligne.texte.indexOf('$A faire$') > -1}">
+                        <span ng-if="ligne.texte.indexOf('$A faire$') > -1" class="afaire-tag">À FAIRE</span>
+                        <span ng-if="ligne.texte.indexOf('CHV-') > -1" class="billet-code">
+                            {{ligne.texte.split(':')[0]}}:
+                        </span>
+                        <span>{{ligne.texte.split(':').slice(1).join(':').replace('$A faire$', '').trim()}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

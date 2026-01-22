@@ -1,0 +1,91 @@
+{
+  "etiquetteBilletAFaire": "Billets à faire",
+  "version": "1.7.016",
+  "livraison": "Historique des versions - Portail: Intranet - Branche: ",
+  "notes": [
+    {
+      "date": "2026-01-22 7:00",
+      "titre": "Version 1.8.018.006",
+      "branche": "livraison_05",
+      "prochaineLivraison": true,
+      "lignes": [
+        {
+          "retrait": false,
+          "texte": "Billets réalisés"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-434: Message nouveau suivi d'infraction : à changer"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-572: Demande entrante : bouton << Créer >> ne devrait pas permettre la création si l'adresse courriel existe déjà pour un intervenant ou un contact"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-573: Demande entrante : si on quitte avant la validation et qu'on a fait une création dans intervenant"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-992: Interface recherche dossiers autorisation/ avis/ suivi infraction - Critère de recherche Nom biologiste assigné/ Expert responsable de la grille"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-1008: Date de statut de l'autorisation - Bloc de préparation de l'autorisation"
+        },
+        {
+          "retrait": false,
+          "texte": "Billets à faire"
+        },
+        {
+          "retrait": true,
+          "texte": "$A faire$ CHV-1039: HF-Modification du comportement de la fin d'un processus de désignation"
+        }
+      ]
+    },
+    {
+      "date": "2025-11-26 07h00",
+      "titre": "Version 1.7.016",
+      "branche": "livraison_05",
+      "prochaineLivraison": false,
+      "lignes": [
+        {
+          "retrait": false,
+          "texte": "Billets réalisés"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-416: Critères du cadre règlementaire - la case à cocher < Forcer la conformité > ne reste pas cochée suite à l'enregistrement"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-535: Consultations-lettres - le nom du représentant"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-552: Nouvelle version - problème de réinitialisation des informations des critères au changement de d'action"
+        }
+      ]
+    },
+    {
+      "date": "2025-10-06 11h45",
+      "titre": "Version 1.6.015",
+      "branche": "livraison_05",
+      "prochaineLivraison": false,
+      "lignes": [
+        {
+          "retrait": false,
+          "texte": "Billets réalisés"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-361 : Vous n'êtes pas autorisé à effectuer cette action - ne devrait pas s'afficher et n'existe pas dans la liste des messages"
+        },
+        {
+          "retrait": true,
+          "texte": "CHV-574 : Demande entrante : champ <Champs modifiés>, un caractère <br/> est présent ,ne devrait pas"
+        }
+      ]
+    }
+  ]
+}
